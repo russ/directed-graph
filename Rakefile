@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "directed-graph"
   gem.homepage = "http://github.com/russ/directed-graph"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby implementation of a directed-graph.}
+  gem.description = %Q{Ruby implementation of a directed-graph.}
   gem.email = "russ@bashme.org"
   gem.authors = ["Russ Smith"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

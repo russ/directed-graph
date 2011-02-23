@@ -1,6 +1,22 @@
 = directed-graph
 
-Description goes here.
+  require "directed-grap"
+
+  include DirectedGraph
+
+  def add_words(g, *words)
+    words.each { |w| g.add_node(Node.new(w)) }
+    edges = words.flat_map { |j| words.map { |k| ([ j, k ] unless j == k) }}.compact.uniq
+    edges.each { |e| g.add_edge(Edge.new(Node.new(e[0]), Node.new(e[1]))) }
+  end
+
+  g = Graph.new(:words)
+  add_words(g, "apple", "iphone", "macbook", "ipad", "itunes", "ipod", "steve jobs")
+  add_words(g, "technology", "apple", "iphone", "ipad", "sony", "microsoft")
+
+  g.nodes.each do |n|
+    puts "#{n.name}: " + g.edges(Node.new(n.name)).collect { |e| e.target.name }.join(",")
+  end
 
 == Contributing to directed-graph
  
