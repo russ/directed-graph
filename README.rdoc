@@ -1,6 +1,7 @@
 = directed-graph
 
-  require "directed-grap"
+  require "rubygems"
+  require "directed-graph"
 
   include DirectedGraph
 
