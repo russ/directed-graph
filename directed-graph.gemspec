@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Russ Smith"]
-  s.date = %q{2011-02-27}
+  s.date = %q{2011-02-28}
   s.description = %q{Ruby implementation of a directed-graph.}
   s.email = %q{russ@bashme.org}
   s.extra_rdoc_files = [
