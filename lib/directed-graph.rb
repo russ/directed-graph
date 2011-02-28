@@ -2,6 +2,7 @@ require "digest/sha2"
 require 'redis'
 require 'redis-namespace'
 require 'json'
+require 'base64'
 
 module DirectedGraph
   autoload :Node, "directed-graph/node"

@@ -1,11 +1,13 @@
 module DirectedGraph
   class Graph
-    def initialize(name, params = {})
-      @redis = Redis::Namespace.new(name, :redis => Redis.new(params))
+    def initialize(name, options = {})
+      @logger = options.delete(:logger)
+      @redis = Redis::Namespace.new(name, :redis => Redis.new(options))
     end
 
     def add_node(node)
       @redis.sadd(:nodes, node.to_json)
+      @logger.debug("Added Node #{node.id} (#{node.name})") if @logger
       node
     end
 
@@ -13,7 +15,8 @@ module DirectedGraph
       @redis.sadd(
         DirectedGraph::identifier("ajdacency", edge.source.id),
         edge.to_json)
-        edge
+      @logger.debug("Added Edge #{edge.id} (#{edge.source.name} => #{edge.target.name})") if @logger
+      edge
     end
 
     def nodes
