@@ -5,30 +5,26 @@ module DirectedGraph
     end
 
     def add_node(node)
-      @redis.zadd(
-        :nodes,
-        (edges(node).count || 0),
-        node.to_json)
+      @redis.sadd(:nodes, node.to_json)
       node
     end
 
     def add_edge(edge)
-      @redis.zadd(
+      @redis.sadd(
         DirectedGraph::identifier("ajdacency", edge.source.id),
-        (edges(edge.source).count || 1),
         edge.to_json)
-      edge
+        edge
     end
 
-    def nodes(min = 0, max = -1)
-      @redis.zrevrange(:nodes, min, max).collect do |n|
+    def nodes
+      @redis.smembers(:nodes).collect do |n|
         node = JSON.parse(n)
         Node.new(node["name"], node["attributes"])
       end
     end
     
-    def edges(node, min = 0, max = -1)
-      @redis.zrevrange(DirectedGraph::identifier("ajdacency", node.id), min, max).collect do |e|
+    def edges(node)
+      @redis.smembers(DirectedGraph::identifier("ajdacency", node.id)).collect do |e|
         edge = JSON.parse(e)
         source = JSON.parse(edge["source"])
         target = JSON.parse(edge["target"])
