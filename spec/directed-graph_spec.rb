@@ -17,10 +17,11 @@ describe DirectedGraph do
     it "should create a node object" do
       source = Node.new("source")
       target = Node.new("target")
-      edge = Edge.new(source, target)
+      edge = Edge.new(source, target, 5)
 
       edge.source.should == source
       edge.target.should == target
+      edge.weight.should == 5
       edge.id.should == DirectedGraph::identifier("edge", source.id, target.id)
     end
   end
