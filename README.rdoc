@@ -2,37 +2,12 @@
 
 = directed-graph
 
-  require "rubygems"
-  require "directed-graph"
-
-  include DirectedGraph
-
-  def add_words(g, *words)
-    words.each { |w| g.add_node(Node.new(w)) }
-    edges = words.flat_map { |j| words.map { |k| ([ j, k ] unless j == k) }}.compact.uniq
-    edges.each { |e| g.add_edge(Edge.new(Node.new(e[0]), Node.new(e[1]))) }
-  end
-
-  g = Graph.new(:words)
-  add_words(g, "apple", "iphone", "macbook", "ipad", "itunes", "ipod", "steve jobs")
-  add_words(g, "technology", "apple", "iphone", "ipad", "sony", "microsoft")
-
-  g.nodes.each do |n|
-    puts "#{n.name}: " + g.edges(Node.new(n.name)).collect { |e| e.target.name }.join(",")
-  end
+  Download at http://neo4j.org/
 
 == Contributing to directed-graph
  
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
-
-== Copyright
-
-Copyright (c) 2011 Russ Smith. See LICENSE.txt for
-further details.
+* Make sure you uninstall it
+* delete any reference to having seen this
+* are you still reading this?
+* no, really... that's it
 
