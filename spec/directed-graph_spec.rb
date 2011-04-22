@@ -63,5 +63,25 @@ describe DirectedGraph do
       edges = subject.edges(DirectedGraph::Node.new("gift cards"))
       edges.count.should == 178
     end
+
+    it "should ..." do
+      frank = subject.add_node(Node.new("frank"))
+      jill = subject.add_node(Node.new("jill"))
+      mary = subject.add_node(Node.new("mary"))
+
+      subject.add_edge(Edge.new(frank, jill))
+      subject.add_edge(Edge.new(frank, mary))
+
+      subject.add_edge(Edge.new(jill, frank))
+
+      subject.add_edge(Edge.new(mary, frank))
+      subject.add_edge(Edge.new(mary, jill))
+
+      subject.nodes.count.should == 3
+
+      subject.edges(frank).count.should == 2
+      subject.edges(jill).count.should == 1
+      subject.edges(mary).count.should == 2
+    end
   end
 end
